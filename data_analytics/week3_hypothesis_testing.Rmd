@@ -1,0 +1,60 @@
+---
+title: "Hypothesis Testing"
+author: "Tyler Wilson"
+output: html_notebook
+---
+
+#Exercise
+
+From the reading for this week, this is a dependent sample t-test because the samples were taken from the same subjects.
+
+Two coach trial:
+```{r t-test}
+# Create data to test from reading. Scores before and after coaching.
+a_training = c(12.9, 13.5, 12.8, 15.6, 17.2, 19.2, 12.6, 15.3, 14.4, 11.3)
+b_training = c(12.7, 13.6, 12.0, 15.2, 16.8, 20.0, 12.0, 15.9, 16.0, 11.1)
+# Run t-test
+t.test(a_training, b_training, paired=TRUE)
+```
+
+```{r}
+# Calculate the t-tabulated value
+qt(0.975, 9)
+```
+Accept the null hypothesis because t-calculated is less than t-tabulated.
+
+
+For step 2 I changed b_training to c_training to differentiate the the new coach for the after population.
+```{r}
+# Create new data representing scores for a new coach
+c_training = c(12.0, 12.2, 11.2, 13.0, 15.0, 15.8, 12.2, 13.4, 12.9, 11.0)
+# Run t-test for new data
+t.test(a_training, c_training, paired = TRUE, alt = "less")
+```
+
+#Data from paired t-test_3.xlsx
+
+From the data in the Excel file, there are four main attributes of the data that I noticed. First, a sample size of 12 is small and will result in the t-test having fairly low power. Second, it will be a dependent sample t-test because blood pressure was measured on the same subjects before and after the drug was administered, and the two drugs were tested on the same subjects. Third, the drugs are labeled as XYZ and ABC, so hopefully this is a double blind study to try to eliminate bias. Lastly, this is not a directional test because the experiment design states the researchers are trying to determine if there is a positive, negative, or neutral effect.
+
+For the first trial I made two variables, one for the starting blood pressure and one for after XYZ was administered:
+```{r}
+starting_bp <- c(155, 142, 145, 160, 149, 152, 157, 159, 166, 163, 158, 161)
+xyz <- c(152, 142, 144, 159, 150, 153, 156, 160, 165, 162, 159, 160)
+t.test(starting_bp, xyz, paired = TRUE)
+```
+With the p-value of 0.2691, there is not evidence to reject the null hypothesis. The null hypothesis was that the two samples were not different. Another way to say this is there was not a significant difference between the samples.
+
+For the ABC drug the same process was used.The starting blood pressure was the same so the same variable was used:
+```{r}
+abc <- c(150, 135, 142, 153, 142, 147, 152, 149, 158, 155, 150, 150)
+t.test(starting_bp, abc, paired = TRUE)
+```
+With a p-value of 3.582e-7, there is strong evidence to reject the null hypothesis. The difference in means is highly significant for the ABC drug. 
+
+Because both drugs were tested on the same subjects, the difference in blood pressures from the drugs can be compared:
+```{r}
+dif_xyz <- starting_bp-xyz
+dif_abc <- starting_bp-abc
+t.test(dif_abc, dif_xyz, paired = TRUE)
+```
+This shows that there is also a significant difference in blood pressure change between the drugs.

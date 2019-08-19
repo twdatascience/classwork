@@ -1,0 +1,137 @@
+---
+title: "Statistical Testing"
+output: html_notebook
+---
+
+# Exercise 1
+```{r}
+set.seed(42)
+# Create random data with a mean of 0.
+x <- rnorm(1000, mean = 0)
+
+# Run a Shapiro-Wilk normality test
+shapiro.test(x)
+```
+
+# Exercise 2
+```{r}
+# I changed the assignment slightly so that the whole table was not shown.
+head(CO2)
+```
+
+```{r}
+# Assign the uptake column to y
+y <- CO2$uptake
+
+# Run a Shapiro-Wilk normality test
+shapiro.test(y)
+```
+
+# R-Bloggers Exercise
+Found at https://www.r-bloggers.com/normality-and-testing-for-normality/
+```{r message=FALSE}
+library(ggplot2)
+library(reshape2)
+assign_vector <- function(data_in, n = 1000){
+  p_5 <- replicate(n=n, expr = shapiro.test(sample(data_in, 5, replace = TRUE))$p.value)
+  p_10 <- replicate(n=n, expr = shapiro.test(sample(data_in, 10, replace = TRUE))$p.value)
+  p_1000 <- replicate(n=n, expr = shapiro.test(sample(data_in, 1000, replace=TRUE))$p.value)
+  p_df <- cbind(p_5, p_10, p_1000)
+  p_df <- as.data.frame(p_df)
+  colnames(p_df) <- c("5 samples", "10 samples", "1000 samples")
+  p_df_m <- melt(p_df)
+  p_df_m <- transform(p_df_m, variable = factor(variable, levels = c("5 samples","10 samples","1000 samples")))
+  return(p_df_m)
+}
+```
+
+```{r}
+# generate data and use the function
+n_rand <- 100000
+n_test <- 10000
+my_data <- rnorm(n_rand)
+p_df_m <- assign_vector(my_data, n = n_test)
+```
+
+##Plot p-values: 
+I changed the x limits to show all the bins from here on. 
+```{r}
+ggplot(p_df_m, aes(x=value)) + 
+  geom_histogram(binwidth = 1/10) +
+  facet_grid(facets = variable ~ ., scales = "free_y") +
+  xlim(-0.1,1.1) +
+  ylab("Count of p-values") +
+  xlab("p-values") +
+  theme(text = element_text(size = 16))
+```
+
+## Normal vs t-distributions
+```{r}
+ggplot(NULL, aes(x=x, color = distribution)) + 
+  stat_function(fun=dnorm, data = data.frame(x = c(-6,6), distribution = factor(1))) + 
+  stat_function(fun=dt, args = list( df = 20), data = data.frame(x = c(-6,6), distribution = factor(2)), linetype = "dashed") + 
+  scale_colour_manual(values = c("blue","red"), labels = c("Normal","T-Distribution"))
+```
+
+Data from t-distribution
+```{r}
+my_data <- rt(n_rand, df = 20)
+p_df_m <- assign_vector(my_data, n = n_test)
+ggplot(p_df_m, aes(x=value)) + 
+  geom_histogram(binwidth = 1/10) +
+  facet_grid(facets = variable ~ ., scales = "free_y") +
+  xlim(-0.1,1.1) +
+  ylab("Count of p-values") +
+  xlab("p-values") +
+  theme(text = element_text(size = 16))
+
+```
+
+Test the tails by replacing tails with normal distribution
+```{r}
+my_data <- rt(n_rand, df = 20)
+my_data_2 <- rnorm(n_rand)
+my_data <- my_data[which(my_data < 3 & my_data > -3)]
+my_data <- c(my_data, my_data_2[which(my_data_2 < -3 | my_data_2 > 3)])
+p_df_m <- assign_vector(my_data, n = n_test)
+ggplot(p_df_m, aes(x=value)) + 
+  geom_histogram(binwidth = 1/10) +
+  facet_grid(facets = variable ~ ., scales = "free_y") +
+  xlim(-0.1,1.1) +
+  ylab("Count of p-values") +
+  xlab("p-values") +
+  theme(text = element_text(size = 16))
+```
+
+Use t-distribution as the tails but normal distribution for middle
+```{r}
+my_data <- rnorm(n_rand)
+my_data_2 <- rt(n_rand, df = 20)
+my_data <- my_data[which(my_data < 3 & my_data > -3)]
+my_data <- c(my_data, my_data_2[which(my_data_2 < -3 | my_data_2 > 3)])
+p_df_m <- assign_vector(my_data, n = n_test)
+
+ggplot(p_df_m, aes(x=value)) + 
+  geom_histogram(binwidth = 1/10) +
+  facet_grid(facets = variable ~ ., scales = "free_y") +
+  xlim(-0.1,1.1) +
+  ylab("Count of p-values") +
+  xlab("p-values") +
+  theme(text = element_text(size = 16))
+```
+
+Skewed data
+```{r}
+my_data <- rlnorm(n_rand, 0, 0.4)
+p_df_m <- assign_vector(my_data, n = n_test)
+
+ggplot(p_df_m, aes(x=value)) + 
+  geom_histogram(binwidth = 1/10) +
+  facet_grid(facets = variable ~ ., scales = "free_y") +
+  xlim(-0.1,1.1) +
+  ylab("Count of p-values") +
+  xlab("p-values") +
+  theme(text = element_text(size = 16))
+```
+# Conclusion
+This was a very interesting hands on assignment. It effectively showed that the “fat pencil” test can show that the data is normal even if the Shapiro-Wilk test says it is not normal. This is because the test is very sensitive to the tails. It also showed that with skewed data, small sample sizes can make the data look normal even if it is not. Overall, it shows the importance of looking at your data as well as the sample size and other factors that may be silently skewing the data, but not being detected with statistical tests. 
