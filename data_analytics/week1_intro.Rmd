@@ -4,3 +4,121 @@ author: "Tyler Wilson"
 output: html_notebook
 ---
 
+```{r setup, message=FALSE}
+library(tidyverse)
+library(data.table)
+```
+
+# Import Data and Convert to Data Table
+```{r import and look at data}
+dt_iris <- as.data.table(iris)
+
+dt_iris
+```
+
+## Clean up column names
+```{r clean column names}
+dt_iris <- dt_iris %>%
+  rename_all(. %>% tolower %>% gsub("\\.", "_", .))
+
+dt_iris
+```
+# Summary Functions 
+## Class Instructions and Tidyverse Alternatives
+```{r} 
+# class version
+dt_iris[, mean(sepal_length), by = species]
+```
+
+```{r}
+# tidyverse version
+dt_iris %>% 
+  group_by(species) %>% 
+  summarise(mean = mean(sepal_length))
+```
+
+```{r}
+# class
+dt_iris[, mean(sepal_length), by = substring(species, 1, 1)]
+```
+
+```{r}
+# tidyverse
+dt_iris %>% 
+  group_by(substring(species, 1, 1)) %>% 
+  summarise(mean = mean(sepal_length))
+```
+
+```{r}
+# class
+dt_iris[, .N, by = 10 * round(sepal_length * sepal_width / 10)]
+```
+
+```{r}
+# tidyverse
+dt_iris %>% 
+  group_by(round = 10 * round(sepal_length * sepal_width / 10)) %>% 
+  summarise(n = sum(n()))
+```
+
+# Chaining
+```{r}
+# class
+dt_iris[, .(sepal_length = median(sepal_length),
+            sepal_width = median(sepal_width),
+            petal_length = median(petal_length),
+            petal_width = median(petal_width)),
+            by = species][order(-species)]
+```
+
+```{r}
+# tidy
+dt_iris %>% 
+  group_by(species) %>% 
+  summarise_all(median) %>% 
+  arrange(., desc(species))
+```
+
+```{r}
+# class
+dt_iris[, .(sepal_length = mean(sepal_length),
+            sepal_width = mean(sepal_width),
+            petal_length = mean(petal_length),
+            petal_width = mean(petal_width)),
+            by = species][order(species)]
+```
+
+```{r}
+# tidy
+dt_iris %>% 
+  group_by(species) %>% 
+  summarise_all(mean) %>% 
+  arrange(., species)
+```
+
+# Subsetting
+
+```{r}
+# class
+dt_iris[, lapply(.SD, mean), by = species]
+```
+
+```{r}
+# tidy
+dt_iris %>% 
+  group_by(species) %>% 
+  summarise_all(mean)
+```
+
+```{r}
+# class
+dt_iris[, lapply(.SD, max), by = species]
+```
+
+```{r}
+# tidy
+dt_iris %>% 
+  group_by(species) %>% 
+  summarise_all(max)
+```
+

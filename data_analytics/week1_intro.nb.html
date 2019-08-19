@@ -1753,8 +1753,229 @@ summary {
 
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGRhdGEudGFibGUpXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)
+library(data.table)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="import-data-and-convert-to-data-table" class="section level1">
+<h1>Import Data and Convert to Data Table</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHRfaXJpcyA8LSBhcy5kYXRhLnRhYmxlKGlyaXMpXG5cbmR0X2lyaXNcbmBgYCJ9 -->
+<pre class="r"><code>dt_iris &lt;- as.data.table(iris)
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgMTogUiBJbnRyb2R1Y3Rpb24iDQphdXRob3I6ICJUeWxlciBXaWxzb24iDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQo=</div>
+dt_iris</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjUsIm5yb3ciOjE1MH0sInJkZiI6Ikg0c0lBQUFBQUFBQUJ0Mll6MjRhVnhUR3J4bXdBUk1YLzhPWU9LbWZnRVg2QUdIUlpSWlZzMmkyVXp4T3B5VU1ncEhiWlo3Q1V2SW1lWVJLeWFxcjdDcjFCUnlsaWhJMWdzNHc1M2RyZjNSRTFoNEpIODZmKzUzdm5Idm4zb3UvLy9iSmcrYVRwbk91NG9KYTRDcEI5clZheWY1c3VLcHI1UEkzNTRMOTdFc3QrK3hrbjh2QndmbnlHZXkveUorWGc3M1grZk5tc0dmMkE3ZDhCb2Y0eGI1cmRzWVR0Ly9OOHZGeTErU1J5WTdsSVI0ZTJOSFY3L1BEMi9EZzR5VTQxR09TZUk5cjlvNk5vdzV3MUw0cmZJamJrMzU0SHNwVDZqZ1UvaWNtanczbnJrbDQ5T0JsdkkvcHM4WDE0RVg5Rm45ay9xN3BYZnB0c2tjZlRHZWV1bW9IeDNUeWUxMTQzRFUvK0YzaFQxMUluMWZXSFhwUDZvYVg0blNsRGorZnNzNlExS25ya0R6Z25FamR6TWQ5ZVkvdVNkMG5Kb24zOHl2dkEzbDhIOEUzUDVKKytQVmgrZThMYjgxUG5UcGYrTytaL3JWSi9EclBtdWRZNWdsZTVFZW5QbDBYT3EvVURWOWJkMzdmYXBtL2JySmgrSFdMYjVuOHl2QzJSVzZaSlA2T2pjZGZGL3kydk4vZ3dtUEgrb0lFQjF6NE5NVVAvcmJnb1d0ZDJOdUcwelk3ZnVMQklXOVpub3JoNkRqcXFJdE9ISFUxeGE1OHdkOFV5YmhBNXFObTQ1MzBmOFBzV3hKZmwvb1lUM3hWMWdmNXNhTjdQTEdqNDY5YVBuZ0h3aHVwL2RaKzRJZEhWZXFvU3J6aWFoKzBudWFhY2JxK3ErSkhiOG02VWp6TjJ4QS82NFo2bUJlZGowM2hxK3RLNTZOTTN4RThQOThsNzRHdUg2K0xyQW52cHVTbkR5djRqbWU1YnozOFVJeno4dThDLytISElzamIveW5HZTEzOTZNaFBCUy92ZjJmNmU4TWhqbnlhQjcvcVYyS2Yyemp5SVpWZm1iK3NEbmdxUCswUHVrcnl3RTk1bFBUeHYvdXV6UnZuZDl0MDdtbjRpV2YrOGV0NXdMN2Nsbkc4VDV3ajRMWWxEM2o3N1BmQ0R6enUxZjRlYnJyZVMzVmZaLzhtejRIV0tiekI5K2VPK1gwZFlxYy92ZzhpNGUzUFY0dm4vZ0FmN3BzZGRCdlhFNzU2VCtPZTRuOUhtSjM3b2Q3UDFhLzNGbjkvTkx1L2I0dnU3NVBNRi9OWVVvZmV3enJDRzEzdjZ4M0JQeXdadjlKSDQ2ZS9EOURsOTVaajMvcmQzcU4xOHEzSlAreDlWditya25HdlN2eHZSWUtyVXVQUi83VDN2WXpubDlaVHh2dEw2eXZqKzVmcDYvcW1VdmN6M1I5Vi8yVGpyc1FPenBYZ29PUFhlSTFENTl6NUxQdnp1bjBlV1hiK3ZCUCs0RkNYbm9QcnpndkdreGRkKzZOOGtmQXhuZk9mODJmZ0xNNzY0Tzg5MktuenM4UnhqM0QvajRmZDN6dnRmcmlTcDNKem52dzkwZ2srNDRUdkNpLzg5SGN1ZUJ2U2QrdXJ6eHVVMUV0ZFdzOWN4bGR2MXJHU1gvcmdYSEFuTTErNi9KOWZ0K05UdVNXZjRIWjhidnhqZFhNVVhVU2pXZmF0dmZTYWRSYWx5U3cwclhrUlRXZnhNQmtsVTdNMEx1THAwM2djRDBPQnF3MUg0UXcwbitNOEhLYlpXT2ZtUlhpd2tJam1XWmlHL2ZOcCtDd1N3TVkwK2JVL3p1dzVhUDVpVko1bmZ4YUx4YythbWFBY3QyYkcxdU5vRW83Nmo2THgwL1FuczIwWHRoL2lNMjlxZlJlbEsyR0Y3WHJZMXVOSk5JeVhTZWFTZlN1WnBIRXl6bHdWL2t0OXZiNk5xUmlPNG1lVFpKcWVodU96MDFHUy9ISWFwcWQ1RC9KZXVPS3RjVlp3L3YzeTJ2ZGFrYnEya0ZvM00vYnhPS0lkby9ESGFHVEtUdGJFWlh2NmsyazhUbWw2WnAzMTB5UXJFMHMyeDFpV05icjV2NzZEOXlPYkZ3QUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa"},{"1":"5.4","2":"3.7","3":"1.5","4":"0.2","5":"setosa"},{"1":"4.8","2":"3.4","3":"1.6","4":"0.2","5":"setosa"},{"1":"4.8","2":"3.0","3":"1.4","4":"0.1","5":"setosa"},{"1":"4.3","2":"3.0","3":"1.1","4":"0.1","5":"setosa"},{"1":"5.8","2":"4.0","3":"1.2","4":"0.2","5":"setosa"},{"1":"5.7","2":"4.4","3":"1.5","4":"0.4","5":"setosa"},{"1":"5.4","2":"3.9","3":"1.3","4":"0.4","5":"setosa"},{"1":"5.1","2":"3.5","3":"1.4","4":"0.3","5":"setosa"},{"1":"5.7","2":"3.8","3":"1.7","4":"0.3","5":"setosa"},{"1":"5.1","2":"3.8","3":"1.5","4":"0.3","5":"setosa"},{"1":"5.4","2":"3.4","3":"1.7","4":"0.2","5":"setosa"},{"1":"5.1","2":"3.7","3":"1.5","4":"0.4","5":"setosa"},{"1":"4.6","2":"3.6","3":"1.0","4":"0.2","5":"setosa"},{"1":"5.1","2":"3.3","3":"1.7","4":"0.5","5":"setosa"},{"1":"4.8","2":"3.4","3":"1.9","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.0","3":"1.6","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.4","3":"1.6","4":"0.4","5":"setosa"},{"1":"5.2","2":"3.5","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.2","2":"3.4","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.7","2":"3.2","3":"1.6","4":"0.2","5":"setosa"},{"1":"4.8","2":"3.1","3":"1.6","4":"0.2","5":"setosa"},{"1":"5.4","2":"3.4","3":"1.5","4":"0.4","5":"setosa"},{"1":"5.2","2":"4.1","3":"1.5","4":"0.1","5":"setosa"},{"1":"5.5","2":"4.2","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.2","3":"1.2","4":"0.2","5":"setosa"},{"1":"5.5","2":"3.5","3":"1.3","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.6","3":"1.4","4":"0.1","5":"setosa"},{"1":"4.4","2":"3.0","3":"1.3","4":"0.2","5":"setosa"},{"1":"5.1","2":"3.4","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.5","3":"1.3","4":"0.3","5":"setosa"},{"1":"4.5","2":"2.3","3":"1.3","4":"0.3","5":"setosa"},{"1":"4.4","2":"3.2","3":"1.3","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.5","3":"1.6","4":"0.6","5":"setosa"},{"1":"5.1","2":"3.8","3":"1.9","4":"0.4","5":"setosa"},{"1":"4.8","2":"3.0","3":"1.4","4":"0.3","5":"setosa"},{"1":"5.1","2":"3.8","3":"1.6","4":"0.2","5":"setosa"},{"1":"4.6","2":"3.2","3":"1.4","4":"0.2","5":"setosa"},{"1":"5.3","2":"3.7","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.3","3":"1.4","4":"0.2","5":"setosa"},{"1":"7.0","2":"3.2","3":"4.7","4":"1.4","5":"versicolor"},{"1":"6.4","2":"3.2","3":"4.5","4":"1.5","5":"versicolor"},{"1":"6.9","2":"3.1","3":"4.9","4":"1.5","5":"versicolor"},{"1":"5.5","2":"2.3","3":"4.0","4":"1.3","5":"versicolor"},{"1":"6.5","2":"2.8","3":"4.6","4":"1.5","5":"versicolor"},{"1":"5.7","2":"2.8","3":"4.5","4":"1.3","5":"versicolor"},{"1":"6.3","2":"3.3","3":"4.7","4":"1.6","5":"versicolor"},{"1":"4.9","2":"2.4","3":"3.3","4":"1.0","5":"versicolor"},{"1":"6.6","2":"2.9","3":"4.6","4":"1.3","5":"versicolor"},{"1":"5.2","2":"2.7","3":"3.9","4":"1.4","5":"versicolor"},{"1":"5.0","2":"2.0","3":"3.5","4":"1.0","5":"versicolor"},{"1":"5.9","2":"3.0","3":"4.2","4":"1.5","5":"versicolor"},{"1":"6.0","2":"2.2","3":"4.0","4":"1.0","5":"versicolor"},{"1":"6.1","2":"2.9","3":"4.7","4":"1.4","5":"versicolor"},{"1":"5.6","2":"2.9","3":"3.6","4":"1.3","5":"versicolor"},{"1":"6.7","2":"3.1","3":"4.4","4":"1.4","5":"versicolor"},{"1":"5.6","2":"3.0","3":"4.5","4":"1.5","5":"versicolor"},{"1":"5.8","2":"2.7","3":"4.1","4":"1.0","5":"versicolor"},{"1":"6.2","2":"2.2","3":"4.5","4":"1.5","5":"versicolor"},{"1":"5.6","2":"2.5","3":"3.9","4":"1.1","5":"versicolor"},{"1":"5.9","2":"3.2","3":"4.8","4":"1.8","5":"versicolor"},{"1":"6.1","2":"2.8","3":"4.0","4":"1.3","5":"versicolor"},{"1":"6.3","2":"2.5","3":"4.9","4":"1.5","5":"versicolor"},{"1":"6.1","2":"2.8","3":"4.7","4":"1.2","5":"versicolor"},{"1":"6.4","2":"2.9","3":"4.3","4":"1.3","5":"versicolor"},{"1":"6.6","2":"3.0","3":"4.4","4":"1.4","5":"versicolor"},{"1":"6.8","2":"2.8","3":"4.8","4":"1.4","5":"versicolor"},{"1":"6.7","2":"3.0","3":"5.0","4":"1.7","5":"versicolor"},{"1":"6.0","2":"2.9","3":"4.5","4":"1.5","5":"versicolor"},{"1":"5.7","2":"2.6","3":"3.5","4":"1.0","5":"versicolor"},{"1":"5.5","2":"2.4","3":"3.8","4":"1.1","5":"versicolor"},{"1":"5.5","2":"2.4","3":"3.7","4":"1.0","5":"versicolor"},{"1":"5.8","2":"2.7","3":"3.9","4":"1.2","5":"versicolor"},{"1":"6.0","2":"2.7","3":"5.1","4":"1.6","5":"versicolor"},{"1":"5.4","2":"3.0","3":"4.5","4":"1.5","5":"versicolor"},{"1":"6.0","2":"3.4","3":"4.5","4":"1.6","5":"versicolor"},{"1":"6.7","2":"3.1","3":"4.7","4":"1.5","5":"versicolor"},{"1":"6.3","2":"2.3","3":"4.4","4":"1.3","5":"versicolor"},{"1":"5.6","2":"3.0","3":"4.1","4":"1.3","5":"versicolor"},{"1":"5.5","2":"2.5","3":"4.0","4":"1.3","5":"versicolor"},{"1":"5.5","2":"2.6","3":"4.4","4":"1.2","5":"versicolor"},{"1":"6.1","2":"3.0","3":"4.6","4":"1.4","5":"versicolor"},{"1":"5.8","2":"2.6","3":"4.0","4":"1.2","5":"versicolor"},{"1":"5.0","2":"2.3","3":"3.3","4":"1.0","5":"versicolor"},{"1":"5.6","2":"2.7","3":"4.2","4":"1.3","5":"versicolor"},{"1":"5.7","2":"3.0","3":"4.2","4":"1.2","5":"versicolor"},{"1":"5.7","2":"2.9","3":"4.2","4":"1.3","5":"versicolor"},{"1":"6.2","2":"2.9","3":"4.3","4":"1.3","5":"versicolor"},{"1":"5.1","2":"2.5","3":"3.0","4":"1.1","5":"versicolor"},{"1":"5.7","2":"2.8","3":"4.1","4":"1.3","5":"versicolor"},{"1":"6.3","2":"3.3","3":"6.0","4":"2.5","5":"virginica"},{"1":"5.8","2":"2.7","3":"5.1","4":"1.9","5":"virginica"},{"1":"7.1","2":"3.0","3":"5.9","4":"2.1","5":"virginica"},{"1":"6.3","2":"2.9","3":"5.6","4":"1.8","5":"virginica"},{"1":"6.5","2":"3.0","3":"5.8","4":"2.2","5":"virginica"},{"1":"7.6","2":"3.0","3":"6.6","4":"2.1","5":"virginica"},{"1":"4.9","2":"2.5","3":"4.5","4":"1.7","5":"virginica"},{"1":"7.3","2":"2.9","3":"6.3","4":"1.8","5":"virginica"},{"1":"6.7","2":"2.5","3":"5.8","4":"1.8","5":"virginica"},{"1":"7.2","2":"3.6","3":"6.1","4":"2.5","5":"virginica"},{"1":"6.5","2":"3.2","3":"5.1","4":"2.0","5":"virginica"},{"1":"6.4","2":"2.7","3":"5.3","4":"1.9","5":"virginica"},{"1":"6.8","2":"3.0","3":"5.5","4":"2.1","5":"virginica"},{"1":"5.7","2":"2.5","3":"5.0","4":"2.0","5":"virginica"},{"1":"5.8","2":"2.8","3":"5.1","4":"2.4","5":"virginica"},{"1":"6.4","2":"3.2","3":"5.3","4":"2.3","5":"virginica"},{"1":"6.5","2":"3.0","3":"5.5","4":"1.8","5":"virginica"},{"1":"7.7","2":"3.8","3":"6.7","4":"2.2","5":"virginica"},{"1":"7.7","2":"2.6","3":"6.9","4":"2.3","5":"virginica"},{"1":"6.0","2":"2.2","3":"5.0","4":"1.5","5":"virginica"},{"1":"6.9","2":"3.2","3":"5.7","4":"2.3","5":"virginica"},{"1":"5.6","2":"2.8","3":"4.9","4":"2.0","5":"virginica"},{"1":"7.7","2":"2.8","3":"6.7","4":"2.0","5":"virginica"},{"1":"6.3","2":"2.7","3":"4.9","4":"1.8","5":"virginica"},{"1":"6.7","2":"3.3","3":"5.7","4":"2.1","5":"virginica"},{"1":"7.2","2":"3.2","3":"6.0","4":"1.8","5":"virginica"},{"1":"6.2","2":"2.8","3":"4.8","4":"1.8","5":"virginica"},{"1":"6.1","2":"3.0","3":"4.9","4":"1.8","5":"virginica"},{"1":"6.4","2":"2.8","3":"5.6","4":"2.1","5":"virginica"},{"1":"7.2","2":"3.0","3":"5.8","4":"1.6","5":"virginica"},{"1":"7.4","2":"2.8","3":"6.1","4":"1.9","5":"virginica"},{"1":"7.9","2":"3.8","3":"6.4","4":"2.0","5":"virginica"},{"1":"6.4","2":"2.8","3":"5.6","4":"2.2","5":"virginica"},{"1":"6.3","2":"2.8","3":"5.1","4":"1.5","5":"virginica"},{"1":"6.1","2":"2.6","3":"5.6","4":"1.4","5":"virginica"},{"1":"7.7","2":"3.0","3":"6.1","4":"2.3","5":"virginica"},{"1":"6.3","2":"3.4","3":"5.6","4":"2.4","5":"virginica"},{"1":"6.4","2":"3.1","3":"5.5","4":"1.8","5":"virginica"},{"1":"6.0","2":"3.0","3":"4.8","4":"1.8","5":"virginica"},{"1":"6.9","2":"3.1","3":"5.4","4":"2.1","5":"virginica"},{"1":"6.7","2":"3.1","3":"5.6","4":"2.4","5":"virginica"},{"1":"6.9","2":"3.1","3":"5.1","4":"2.3","5":"virginica"},{"1":"5.8","2":"2.7","3":"5.1","4":"1.9","5":"virginica"},{"1":"6.8","2":"3.2","3":"5.9","4":"2.3","5":"virginica"},{"1":"6.7","2":"3.3","3":"5.7","4":"2.5","5":"virginica"},{"1":"6.7","2":"3.0","3":"5.2","4":"2.3","5":"virginica"},{"1":"6.3","2":"2.5","3":"5.0","4":"1.9","5":"virginica"},{"1":"6.5","2":"3.0","3":"5.2","4":"2.0","5":"virginica"},{"1":"6.2","2":"3.4","3":"5.4","4":"2.3","5":"virginica"},{"1":"5.9","2":"3.0","3":"5.1","4":"1.8","5":"virginica"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[150]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<div id="clean-up-column-names" class="section level2">
+<h2>Clean up column names</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHRfaXJpcyA8LSBkdF9pcmlzICU+JVxuICByZW5hbWVfYWxsKC4gJT4lIHRvbG93ZXIgJT4lIGdzdWIoXCJcXFxcLlwiLCBcIl9cIiwgLikpXG5cbmR0X2lyaXNcbmBgYCJ9 -->
+<pre class="r"><code>dt_iris &lt;- dt_iris %&gt;%
+  rename_all(. %&gt;% tolower %&gt;% gsub(&quot;\\.&quot;, &quot;_&quot;, .))
+
+dt_iris</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjUsIm5yb3ciOjE1MH0sInJkZiI6Ikg0c0lBQUFBQUFBQUJ0Mll6MjVhUnhUR3gxeXdEU1l1L2tjd2NkSThnUmZwQTRSRm42Q3I3Q3BLcmxNcUFnaW9rMldmd2xMN0pubUVTdW1xcSt3cTlRVWN0YW9hTllKZXVOOXZhbi8waXF4OUpYdzRmK1k3M3premQyYndWMTgrZTFKN1Znc2hsRUpTU1VJcHliNldTOW1mclZBTzFhVjhIVUp5bEgycFpKLzk3SFBWT2I1WVBaMmpINWZQVDUzRHQ4dm5sODZoN01kaDlYUk84SnY5UUhiR0UzZjB4ZXFKOGtEeXZtUlRlWWlIQjNaMDk4Zjg4QlllZktJRWgzb2tpWSs0c2pjMWpqckFjZnVCOFNIdTBQb1JlVGhQcStQRStKOUpuZ3JuZ1NRODJ2QVM3MVA2ckxnMnZLaGY4ZmZsYjBsdjBXL0pObjJRemp5MTNBNk9kUEpIM1hnOGtCLzhsdkduTG1UTWErc092VzExdzh0eFdsWkhuRTliWjBqcTlIVklIbkRPckc3bTQ1RzlSdyt0N2pOSjR1UDgydnRBbnRoSDhPVkgwbys0UHBUL2tmSDIvTlRwODRYL29mVFBKZkg3UEh1ZVU1c25lSkVmbmZwOFhmaThVamQ4dGU3aXZsV1hmMWV5S3Z4ZHhkY2xQeFBlbnNrZFNlTHZhVHorWGNOdjJQc05ManoyMVJja09PRENwMlorOFBjTUQ5M3J3dDRRVGtOMi9NU0RROTZpUENYaCtEanEyRFdkT09xcW1kMzVncjl0a25HSnpVZEY0NFAxZjB2MkhZdmZ0Zm9ZVDN6WjFnZjVzYU5IUExPajR5OHJIN3dUNDQzMGZucy84TU9qYkhXVUxkNXh2UTllVDIzRE9GL2ZaZk9qMTIxZE9aN25yWnFmZFVNOXpJdlB4N2J4OVhYbDgxR2s3eHRlbk8rQzk4RFhUOVJOVm94M3pmTFRoelg4d0xQYXQ1NytsWStMOHM4Yy8rbmZlVkMwLzVPUGo3cjcwWkVmY2w3Ui8xNzZIOEloam55ZUI3L3IxMmFmYXh6NWtNNnZ5RjlVQnp5ZG4vY0gzU1Y1NE9jOEN2cjQzMzFYODhiNTNaRE9QUTAvOGN3L2ZqOFAySmNiTm83M2lYTUUzSWJsQWUrSS9kNzRnY2U5T3Q3RHBmdTkxUGQxOW0veUhIdWR4aHY4ZU83SUgrc3dPLzJKZlRBSjczaStLcDc3QTN5NGJ6YlJOYTV0ZlAyZXhqMGwvbzZRbmZ1aDM4L2Q3L2VXZUgrVVBkNjNUWS8zU2VhTGVTeW93KzloVGVPTjd2ZjFwdUdmRkl4ZjY2UDQrZThEZFB1OUZkaTNmdFo3dEVtK2sveFY3N1A3M3hTTWUxUGdmMmNTWEpjZWovNmIzdmNpbnA5YVR4SHZUNjJ2aU8vdjBqZjF6YVh2Wjc0L3V2NUI0NjdORHM2MTRhRGo5M2lQUStmYytXajc4Nlo5SGxsMC9ydzMvdUJRbDUrRG04NEx4cE1YM2Z2amZKSHdrYzc1ei9uVENZcFRIK0s5Qnp0MWZyUTQ3aEhoLy9Hd3gzdW43b2RyZVVxMzV5bmVJNFBoTTg3NHJ2SENUMy9uaHJkbGZWZGZZOTZrb0Y3cThucm1OcjU4dTQ2MS9OYUhFSko3bWZrcUxQLzVkVGMrcFR2eVNlN0c1OVkvVnJjSDZXVTZtR2JmR2l1dnJOTjBOcHAycGRVdTA4bTAzeHNOUmhOWnFwZjl5WXYrc04vckdseWxOK2hPUVlzNUxycTlXVFkyaEhrZW5pd3NvdmE4Tyt1ZVgweTZMMU1EckU1R3I4NkhtWDBKdW53eFNqOWtmeGFMeFhlZW1hQWxia1hHK2pRZGR3ZGZEOUxoaTltM3N1M2x0bGY5NTlGVUg2ZXp0YkRjZGpOc1p6cE9lLzFWa3JsbDN4bU5aLzNSTUhPVitDLzF6ZnEySm1ZNDdBM1M3dkJ4MXRQdlh3NGZRNzBXOGhjbXFOYmw5NnNiM3l0NTFzckN5dHpPaVBlSEtaMFlkTDlKQjFMMnMvNnQ0TS9Iay81d1JyOHo2L1I4TnNvcXhKSlJ3YklxTDh6L0JkeFZCOGFXRndBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sepal_length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sepal_width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["petal_length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["petal_width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["species"],"name":[5],"type":["fctr"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","5":"setosa"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","5":"setosa"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","5":"setosa"},{"1":"5.4","2":"3.7","3":"1.5","4":"0.2","5":"setosa"},{"1":"4.8","2":"3.4","3":"1.6","4":"0.2","5":"setosa"},{"1":"4.8","2":"3.0","3":"1.4","4":"0.1","5":"setosa"},{"1":"4.3","2":"3.0","3":"1.1","4":"0.1","5":"setosa"},{"1":"5.8","2":"4.0","3":"1.2","4":"0.2","5":"setosa"},{"1":"5.7","2":"4.4","3":"1.5","4":"0.4","5":"setosa"},{"1":"5.4","2":"3.9","3":"1.3","4":"0.4","5":"setosa"},{"1":"5.1","2":"3.5","3":"1.4","4":"0.3","5":"setosa"},{"1":"5.7","2":"3.8","3":"1.7","4":"0.3","5":"setosa"},{"1":"5.1","2":"3.8","3":"1.5","4":"0.3","5":"setosa"},{"1":"5.4","2":"3.4","3":"1.7","4":"0.2","5":"setosa"},{"1":"5.1","2":"3.7","3":"1.5","4":"0.4","5":"setosa"},{"1":"4.6","2":"3.6","3":"1.0","4":"0.2","5":"setosa"},{"1":"5.1","2":"3.3","3":"1.7","4":"0.5","5":"setosa"},{"1":"4.8","2":"3.4","3":"1.9","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.0","3":"1.6","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.4","3":"1.6","4":"0.4","5":"setosa"},{"1":"5.2","2":"3.5","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.2","2":"3.4","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.7","2":"3.2","3":"1.6","4":"0.2","5":"setosa"},{"1":"4.8","2":"3.1","3":"1.6","4":"0.2","5":"setosa"},{"1":"5.4","2":"3.4","3":"1.5","4":"0.4","5":"setosa"},{"1":"5.2","2":"4.1","3":"1.5","4":"0.1","5":"setosa"},{"1":"5.5","2":"4.2","3":"1.4","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.2","3":"1.2","4":"0.2","5":"setosa"},{"1":"5.5","2":"3.5","3":"1.3","4":"0.2","5":"setosa"},{"1":"4.9","2":"3.6","3":"1.4","4":"0.1","5":"setosa"},{"1":"4.4","2":"3.0","3":"1.3","4":"0.2","5":"setosa"},{"1":"5.1","2":"3.4","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.5","3":"1.3","4":"0.3","5":"setosa"},{"1":"4.5","2":"2.3","3":"1.3","4":"0.3","5":"setosa"},{"1":"4.4","2":"3.2","3":"1.3","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.5","3":"1.6","4":"0.6","5":"setosa"},{"1":"5.1","2":"3.8","3":"1.9","4":"0.4","5":"setosa"},{"1":"4.8","2":"3.0","3":"1.4","4":"0.3","5":"setosa"},{"1":"5.1","2":"3.8","3":"1.6","4":"0.2","5":"setosa"},{"1":"4.6","2":"3.2","3":"1.4","4":"0.2","5":"setosa"},{"1":"5.3","2":"3.7","3":"1.5","4":"0.2","5":"setosa"},{"1":"5.0","2":"3.3","3":"1.4","4":"0.2","5":"setosa"},{"1":"7.0","2":"3.2","3":"4.7","4":"1.4","5":"versicolor"},{"1":"6.4","2":"3.2","3":"4.5","4":"1.5","5":"versicolor"},{"1":"6.9","2":"3.1","3":"4.9","4":"1.5","5":"versicolor"},{"1":"5.5","2":"2.3","3":"4.0","4":"1.3","5":"versicolor"},{"1":"6.5","2":"2.8","3":"4.6","4":"1.5","5":"versicolor"},{"1":"5.7","2":"2.8","3":"4.5","4":"1.3","5":"versicolor"},{"1":"6.3","2":"3.3","3":"4.7","4":"1.6","5":"versicolor"},{"1":"4.9","2":"2.4","3":"3.3","4":"1.0","5":"versicolor"},{"1":"6.6","2":"2.9","3":"4.6","4":"1.3","5":"versicolor"},{"1":"5.2","2":"2.7","3":"3.9","4":"1.4","5":"versicolor"},{"1":"5.0","2":"2.0","3":"3.5","4":"1.0","5":"versicolor"},{"1":"5.9","2":"3.0","3":"4.2","4":"1.5","5":"versicolor"},{"1":"6.0","2":"2.2","3":"4.0","4":"1.0","5":"versicolor"},{"1":"6.1","2":"2.9","3":"4.7","4":"1.4","5":"versicolor"},{"1":"5.6","2":"2.9","3":"3.6","4":"1.3","5":"versicolor"},{"1":"6.7","2":"3.1","3":"4.4","4":"1.4","5":"versicolor"},{"1":"5.6","2":"3.0","3":"4.5","4":"1.5","5":"versicolor"},{"1":"5.8","2":"2.7","3":"4.1","4":"1.0","5":"versicolor"},{"1":"6.2","2":"2.2","3":"4.5","4":"1.5","5":"versicolor"},{"1":"5.6","2":"2.5","3":"3.9","4":"1.1","5":"versicolor"},{"1":"5.9","2":"3.2","3":"4.8","4":"1.8","5":"versicolor"},{"1":"6.1","2":"2.8","3":"4.0","4":"1.3","5":"versicolor"},{"1":"6.3","2":"2.5","3":"4.9","4":"1.5","5":"versicolor"},{"1":"6.1","2":"2.8","3":"4.7","4":"1.2","5":"versicolor"},{"1":"6.4","2":"2.9","3":"4.3","4":"1.3","5":"versicolor"},{"1":"6.6","2":"3.0","3":"4.4","4":"1.4","5":"versicolor"},{"1":"6.8","2":"2.8","3":"4.8","4":"1.4","5":"versicolor"},{"1":"6.7","2":"3.0","3":"5.0","4":"1.7","5":"versicolor"},{"1":"6.0","2":"2.9","3":"4.5","4":"1.5","5":"versicolor"},{"1":"5.7","2":"2.6","3":"3.5","4":"1.0","5":"versicolor"},{"1":"5.5","2":"2.4","3":"3.8","4":"1.1","5":"versicolor"},{"1":"5.5","2":"2.4","3":"3.7","4":"1.0","5":"versicolor"},{"1":"5.8","2":"2.7","3":"3.9","4":"1.2","5":"versicolor"},{"1":"6.0","2":"2.7","3":"5.1","4":"1.6","5":"versicolor"},{"1":"5.4","2":"3.0","3":"4.5","4":"1.5","5":"versicolor"},{"1":"6.0","2":"3.4","3":"4.5","4":"1.6","5":"versicolor"},{"1":"6.7","2":"3.1","3":"4.7","4":"1.5","5":"versicolor"},{"1":"6.3","2":"2.3","3":"4.4","4":"1.3","5":"versicolor"},{"1":"5.6","2":"3.0","3":"4.1","4":"1.3","5":"versicolor"},{"1":"5.5","2":"2.5","3":"4.0","4":"1.3","5":"versicolor"},{"1":"5.5","2":"2.6","3":"4.4","4":"1.2","5":"versicolor"},{"1":"6.1","2":"3.0","3":"4.6","4":"1.4","5":"versicolor"},{"1":"5.8","2":"2.6","3":"4.0","4":"1.2","5":"versicolor"},{"1":"5.0","2":"2.3","3":"3.3","4":"1.0","5":"versicolor"},{"1":"5.6","2":"2.7","3":"4.2","4":"1.3","5":"versicolor"},{"1":"5.7","2":"3.0","3":"4.2","4":"1.2","5":"versicolor"},{"1":"5.7","2":"2.9","3":"4.2","4":"1.3","5":"versicolor"},{"1":"6.2","2":"2.9","3":"4.3","4":"1.3","5":"versicolor"},{"1":"5.1","2":"2.5","3":"3.0","4":"1.1","5":"versicolor"},{"1":"5.7","2":"2.8","3":"4.1","4":"1.3","5":"versicolor"},{"1":"6.3","2":"3.3","3":"6.0","4":"2.5","5":"virginica"},{"1":"5.8","2":"2.7","3":"5.1","4":"1.9","5":"virginica"},{"1":"7.1","2":"3.0","3":"5.9","4":"2.1","5":"virginica"},{"1":"6.3","2":"2.9","3":"5.6","4":"1.8","5":"virginica"},{"1":"6.5","2":"3.0","3":"5.8","4":"2.2","5":"virginica"},{"1":"7.6","2":"3.0","3":"6.6","4":"2.1","5":"virginica"},{"1":"4.9","2":"2.5","3":"4.5","4":"1.7","5":"virginica"},{"1":"7.3","2":"2.9","3":"6.3","4":"1.8","5":"virginica"},{"1":"6.7","2":"2.5","3":"5.8","4":"1.8","5":"virginica"},{"1":"7.2","2":"3.6","3":"6.1","4":"2.5","5":"virginica"},{"1":"6.5","2":"3.2","3":"5.1","4":"2.0","5":"virginica"},{"1":"6.4","2":"2.7","3":"5.3","4":"1.9","5":"virginica"},{"1":"6.8","2":"3.0","3":"5.5","4":"2.1","5":"virginica"},{"1":"5.7","2":"2.5","3":"5.0","4":"2.0","5":"virginica"},{"1":"5.8","2":"2.8","3":"5.1","4":"2.4","5":"virginica"},{"1":"6.4","2":"3.2","3":"5.3","4":"2.3","5":"virginica"},{"1":"6.5","2":"3.0","3":"5.5","4":"1.8","5":"virginica"},{"1":"7.7","2":"3.8","3":"6.7","4":"2.2","5":"virginica"},{"1":"7.7","2":"2.6","3":"6.9","4":"2.3","5":"virginica"},{"1":"6.0","2":"2.2","3":"5.0","4":"1.5","5":"virginica"},{"1":"6.9","2":"3.2","3":"5.7","4":"2.3","5":"virginica"},{"1":"5.6","2":"2.8","3":"4.9","4":"2.0","5":"virginica"},{"1":"7.7","2":"2.8","3":"6.7","4":"2.0","5":"virginica"},{"1":"6.3","2":"2.7","3":"4.9","4":"1.8","5":"virginica"},{"1":"6.7","2":"3.3","3":"5.7","4":"2.1","5":"virginica"},{"1":"7.2","2":"3.2","3":"6.0","4":"1.8","5":"virginica"},{"1":"6.2","2":"2.8","3":"4.8","4":"1.8","5":"virginica"},{"1":"6.1","2":"3.0","3":"4.9","4":"1.8","5":"virginica"},{"1":"6.4","2":"2.8","3":"5.6","4":"2.1","5":"virginica"},{"1":"7.2","2":"3.0","3":"5.8","4":"1.6","5":"virginica"},{"1":"7.4","2":"2.8","3":"6.1","4":"1.9","5":"virginica"},{"1":"7.9","2":"3.8","3":"6.4","4":"2.0","5":"virginica"},{"1":"6.4","2":"2.8","3":"5.6","4":"2.2","5":"virginica"},{"1":"6.3","2":"2.8","3":"5.1","4":"1.5","5":"virginica"},{"1":"6.1","2":"2.6","3":"5.6","4":"1.4","5":"virginica"},{"1":"7.7","2":"3.0","3":"6.1","4":"2.3","5":"virginica"},{"1":"6.3","2":"3.4","3":"5.6","4":"2.4","5":"virginica"},{"1":"6.4","2":"3.1","3":"5.5","4":"1.8","5":"virginica"},{"1":"6.0","2":"3.0","3":"4.8","4":"1.8","5":"virginica"},{"1":"6.9","2":"3.1","3":"5.4","4":"2.1","5":"virginica"},{"1":"6.7","2":"3.1","3":"5.6","4":"2.4","5":"virginica"},{"1":"6.9","2":"3.1","3":"5.1","4":"2.3","5":"virginica"},{"1":"5.8","2":"2.7","3":"5.1","4":"1.9","5":"virginica"},{"1":"6.8","2":"3.2","3":"5.9","4":"2.3","5":"virginica"},{"1":"6.7","2":"3.3","3":"5.7","4":"2.5","5":"virginica"},{"1":"6.7","2":"3.0","3":"5.2","4":"2.3","5":"virginica"},{"1":"6.3","2":"2.5","3":"5.0","4":"1.9","5":"virginica"},{"1":"6.5","2":"3.0","3":"5.2","4":"2.0","5":"virginica"},{"1":"6.2","2":"3.4","3":"5.4","4":"2.3","5":"virginica"},{"1":"5.9","2":"3.0","3":"5.1","4":"1.8","5":"virginica"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[150]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="summary-functions" class="section level1">
+<h1>Summary Functions</h1>
+<div id="class-instructions-and-tidyverse-alternatives" class="section level2">
+<h2>Class Instructions and Tidyverse Alternatives</h2>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHRfaXJpc1ssIG1lYW4oc2VwYWxfbGVuZ3RoKSwgYnk9c3BlY2llc11cbmBgYCJ9 -->
+<pre class="r"><code>dt_iris[, mean(sepal_length), by=species]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjIsIm5yb3ciOjN9LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFSc1U3RE1CQzkyRTFMSWxFcWdZUlVNY0xZb0xLeFplQUxHS3FJemFRdVdBUTdzdDNBeUovd0E0ek16UHdFbjBMRE9iR1JtaUhPM2ZQZGUzNTN0emZGVlZxa0FFQ0F4aFFJeFhCRThJaGdCSW43dndMUTQ2NEE2Q0grYVhmWjVTN2VLeDVYdk9HVndXalczWHJVY0tzTTgxbmFjRzFFcVNxbFBaSTBRajhJS1VvMm9JdkxpcG5BOXEreFlhWEZYb0FkZmxPbms1K016Mzh1NSsvNTZWZnovWGxkNVBPN3M0K0Q1Y1dBTHRIcUpaUHNtVHRLWjRXODRkRzI3VzlmU051QlZMcG1sbVVialMzRGx3V2FXVGVKSHB5WW1wY0M0VDRscTJYL3lMM09pYXF0VUJKN2ladHFQSkNNOUFBNDJrcW50VjZVajF2NXRIQ1VxZDhBZUJ1UjMwcUlTUzhaQnp0eG1CeVhPR1llTEZUc25sYyttZUpvT2t0WnJZVzB3VCtpSnJQS3NsQ1g0dDRDMGk5Zzl3Y2JjR3hoUXdJQUFBPT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["V1"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"setosa","2":"5.006"},{"1":"versicolor","2":"5.936"},{"1":"virginica","2":"6.588"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2UgdmVyc2lvblxuZHRfaXJpcyAlPiUgXG4gIGdyb3VwX2J5KHNwZWNpZXMpICU+JSBcbiAgc3VtbWFyaXNlKG1lYW4gPSBtZWFuKHNlcGFsX2xlbmd0aCkpXG5gYGAifQ== -->
+<pre class="r"><code># tidyverse version
+dt_iris %&gt;% 
+  group_by(species) %&gt;% 
+  summarise(mean = mean(sepal_length))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJtVlNzVTdETUJCMWs3U2xvUlJRRVVnVkl4SlRnOHJHMW9HUkFkR0JpczJrbDliQ3RTUGJEWXg4Q2gvQXlNek1UL0FwTkZ3U3U2SmhzSDMzZkg3UDkreTc2K2xsT0EwSklSN3htejd4ZkF3REQ2Y0dDVWluV0Y4SThmdGxBZkgzY1BYTHpUSXY0cTNpRm9jTXVNYm9vTnkxcUFZak5iVlptSUhTTEpaY0tvdDBNcWJtVExDWTF1aWFNYWZhc1cwMEVob2JQRXZJR2tldjBCa2Z0YzYrTHdadjQ1UFA3T3ZqYWpvZVBKeSs3NHpPNjNTQ0xzSFJlUlpzNnhSaWhuQ1ZCa3Vnb2pybjV6WGxjRVlOalJLRkxEWG1qcExQa1dNdlRQSmVjY3J6L0tkV2VCZ3hZVUFKeWlNTlBGR1FJSGhzeDlxT1FyTnBEM1Fua0dMeERZaTVXVmhzdDhMdTJXd0RkVy9CL0N1cnNMOWw3WWx0dGhUYXVsbGJwb1pKZ1Z0ZXY5VGY3cjJoYXNEK1NoUU56NGJ4WWlXZWhxUENIL3N6aURXaFlYK0xpNzFLTXNoclBiYncxa3lBZXlWT0g0SGJwSWZHbHI1R3FVTG4zRU1ncWlNanNUMkg0SDl5aURYeUYxOHdUTVhiQWdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"setosa","2":"5.006"},{"1":"versicolor","2":"5.936"},{"1":"virginica","2":"6.588"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjbGFzc1xuZHRfaXJpc1ssIG1lYW4oc2VwYWxfbGVuZ3RoKSwgYnkgPSBzdWJzdHJpbmcoc3BlY2llcywgMSwgMSldXG5gYGAifQ== -->
+<pre class="r"><code># class
+dt_iris[, mean(sepal_length), by = substring(species, 1, 1)]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjIsIm5yb3ciOjJ9LCJyZGYiOiJINHNJQUFBQUFBQUFCZ3R5aVREaWl1QmlZR0JnWW1CbVpXWmdZZ1l5V1ppQUJDTURDd01uaUs1Z1lHQVdCaXRnWUJBQTAxQ0pZaGlqREVqd2dXUWNSTmhVN3VwTHpYZVE1UEhjRldkcWkyWVVaMUYrdVY1ZVltNXFNWkREQzlMUUFDVCsvLy8vRDAwaGEzSk9ZbkV4MUQ2WUlGZEtZa21pWGxvUlVEKzZjcGlaeU03akxDNU5LaTRweXN4TGh3b3doUmtDU1hTcjJQTUxTakx6ODRDNm1VQ2VaRVd6bExFSVRZQy9OQTlrVzRwdWNrWnBYcmF1RWNoaFlHa0k0SVd5bVZEWklDdFova09OWW9VYXhaYWFsNTZabHdyelJFNWlVbW9PbE1NSERDbXdwL1FLZ0Q0b2dZVUFVTFJZcnlTL0pCR21qaXM1UHdjbUF2WWJ3ejhBZEF2d1dkSUJBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["substring"],"name":[1],"type":["chr"],"align":["left"]},{"label":["V1"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"s","2":"5.006"},{"1":"v","2":"6.262"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5dmVyc2VcbmR0X2lyaXMgJT4lIFxuICBncm91cF9ieShzdWJzdHJpbmcoc3BlY2llcywgMSwgMSkpICU+JSBcbiAgc3VtbWFyaXNlKG1lYW4gPSBtZWFuKHNlcGFsX2xlbmd0aCkpXG5gYGAifQ== -->
+<pre class="r"><code># tidyverse
+dt_iris %&gt;% 
+  group_by(substring(species, 1, 1)) %&gt;% 
+  summarise(mean = mean(sepal_length))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6Mn0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFzVTdETUJDOU9rbXJSTFJVS2dObFltQUFpUWFCMmoxREY5Wk9uU3E1cVNrUnFSM0ZEakR5S2YyTy9ndS9rdlJzN0FGSDF0MzUzdE43ZmxrdDF5L0pPZ0VBQWtFVUFBbHdEQW1XSG9RUTYvNE5FRXdNQVdCc3VnV2tHejZ4akRTU1hmWHZmcDl1anRuMDR2VzBXV1NlVk1UcGdVbFA1bG8yVzZucWd1L3ZaY1h5Z3NuSDIyYzhEeFlQRDR4eVh5Z3ZxWFJDYnBuc3FLTHBXNDBlSGoydXhWZnF2SWZhK3dkTDEzVXR0dFlqRDBTbENzR1JTblRxeUhQcDFkN2lzdUZhZWpmTDN4ditNWnZybHhqNDd4dmFtZnlmdFNYcHJGUmtwZnFNN3d2T1hNaVNibGxwTHlPTVlCS2tGZjRxNVNMalZxWktLT3A0U1M1S3R6SFpvRDBEdlJmNWhlTUJBQUE9In0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["substring(species, 1, 1)"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"s","2":"5.006"},{"1":"v","2":"6.262"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[2]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjbGFzc1xuZHRfaXJpc1ssIC5OLCBieSA9IDEwICogcm91bmQoc2VwYWxfbGVuZ3RoICogc2VwYWxfd2lkdGggLyAxMCldXG5gYGAifQ== -->
+<pre class="r"><code># class
+dt_iris[, .N, by = 10 * round(sepal_length * sepal_width / 10)]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjIsIm5yb3ciOjN9LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFRUFEvQ0lCQzlRcXV4aVIrSnM1dXJIWXl1cG9Pemc1TXJ0bFViS3pTVVJrZi91TllESVJwSTdvREh1M2YzMkc4UHkvZ1FBd0FCR2xFZ0ZJOGh3UlJBQ0FPOVB3RG8xQkFBUmhnMFhZRlo2ZHp1RzNCcnFOOHhXb3laVnZMRUJsTGNFODV1UldQSjVJbXA2N3FYUjR5eWlqV2FOUGtENDV3cGxwd2sxdnQwcHpreGcxcFFpcGJuenNZTzA5c3I2NHRhbFlKaklkRU9JNjlmSUQxZzNITGRLRjlrbDVaZkYyczlrM24rdVEvc0Q3Z3orYllNT3lzVldhbGV3YzhsTDl5b0ZUc1dsYjJNOEpPTW42U1dKVmZPUEtKTm9vUmlqaGRub25LSThRYnZEd25mVkxQUEFRQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["round"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["N"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"20","2":"117"},{"1":"10","2":"29"},{"1":"30","2":"4"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHRfaXJpcyAlPiUgXG4gIGdyb3VwX2J5KHJvdW5kID0gMTAgKiByb3VuZChzZXBhbF9sZW5ndGggKiBzZXBhbF93aWR0aCAvIDEwKSkgJT4lIFxuICBzdW1tYXJpc2UobiA9IHN1bShuKCkpKVxuYGBgIn0= -->
+<pre class="r"><code>dt_iris %&gt;% 
+  group_by(round = 10 * round(sepal_length * sepal_width / 10)) %&gt;% 
+  summarise(n = sum(n()))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6MiwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVFzVzdESUJBOVE1ektscHBHeXR5dHF6MVVrYkpGR2ZvRm5iSVNtN1JXM2NQQ1dPbllIMi9jZzNDS0JOSnh4N3ZIT3g3dmI4Zlg4bGdDZ0FDWlN4Q1N5b1dnTFlNRkZENy9BTWhOSUFDc0tPVGhCY0k2YkdQZUE2OUgzNmQ0cHBpOFVpS1dvL3JXSXhYcklCaEJheVpzZVJ5bVY1cGVqWHlGd2JKVlR0Vm5TMm9KdmJEbVV2TVUveHp4UzlzOHozK1VyZ241d1F5dU0waFU0UjNteVpUTUpzRFRoRjY2clpyUENiK3FuWDlKYU4vZFovRUh1QmEza1dLT1VubVVXbXI4NkZDenlWNmRkQjhQSzdJUUhOU0Q3ZEN4WlVMSDJobW5tRmMycG1ja2VJUHJQOGJqbWczUEFRQUEifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["round"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"10","2":"29"},{"1":"20","2":"117"},{"1":"30","2":"4"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+</div>
+<div id="chaining" class="section level1">
+<h1>Chaining</h1>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjbGFzc1xuZHRfaXJpc1ssIC4oc2VwYWxfbGVuZ3RoID0gbWVkaWFuKHNlcGFsX2xlbmd0aCksXG4gICAgICAgICAgICBzZXBhbF93aWR0aCA9IG1lZGlhbihzZXBhbF93aWR0aCksXG4gICAgICAgICAgICBwZXRhbF9sZW5ndGggPSBtZWRpYW4ocGV0YWxfbGVuZ3RoKSxcbiAgICAgICAgICAgIHBldGFsX3dpZHRoID0gbWVkaWFuKHBldGFsX3dpZHRoKSksXG4gICAgICAgICAgICBieSA9IHNwZWNpZXNdW29yZGVyKC1zcGVjaWVzKV1cbmBgYCJ9 -->
+<pre class="r"><code># class
+dt_iris[, .(sepal_length = median(sepal_length),
+            sepal_width = median(sepal_width),
+            petal_length = median(petal_length),
+            petal_width = median(petal_width)),
+            by = species][order(-species)]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjUsIm5yb3ciOjN9LCJyZGYiOiJINHNJQUFBQUFBQUFCbVZTUzA3RE1CQjE0NmFsNlljaUVFamNvWkdBQXpRTFRzQ3FPMlJTdDdVd2RtUzdMVXV1QVRkQ2d0dXdZRVBEK0pPS21pYzVubmt6OXN5OCtPNTJkcDNOTW9SUWduQ0tVWUxCYkNmd2FhRTI2dG45R1NGOENrWUsreEIySEpaUE9renVjTHFoWElNMWRsbUIxZFJJVFlLWGJhalNySlJjcXNEME5rd3RtV0FsaWE1TFMwNTBjOXUreG9LVUJzNGl0SU0xc25XS1MrUlFYTHhhdkJWbnFJR1BINFY0WitGUTlHOGM5dkZ6N3hjblBqNzlqczRIWi9yMVlmRTVmZmQxb25aN1NtNXpRWjZvYmRsS2xiekFwNjdySDUrSTYyaVViRTRNeVJjS2pzU1ROOWVNbmZLZTdPcUtsZ3hvN3c0MHJRaS81MVFzelNwd2ZjOXQyWHhQRFNwcS9xVjV6cWM1SVErcWQyVmxtQlJRUHdsLy9xRHRsb3FJNDdXdy9jNG41V290SGlkWGRqVC9PaHlHd2NaLzdOU1hUT3RveGc2MHlRUnRaT0RrZ2ZMZ2pFQmVKMHRlS1NaTW95R3dPamNTNW1rWWVGc040eC9KN2hkQitFaVg1d0lBQUE9PSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["sepal_length"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sepal_width"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["petal_length"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["petal_width"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"virginica","2":"6.5","3":"3.0","4":"5.55","5":"2.0"},{"1":"versicolor","2":"5.9","3":"2.8","4":"4.35","5":"1.3"},{"1":"setosa","2":"5.0","3":"3.4","4":"1.50","5":"0.2"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB0aWR5XG5kdF9pcmlzICU+JSBcbiAgZ3JvdXBfYnkoc3BlY2llcykgJT4lIFxuICBzdW1tYXJpc2VfYWxsKG1lZGlhbikgJT4lIFxuICBhcnJhbmdlKC4sIGRlc2Moc3BlY2llcykpXG5gYGAifQ== -->
+<pre class="r"><code># tidy
+dt_iris %&gt;% 
+  group_by(species) %&gt;% 
+  summarise_all(median) %&gt;% 
+  arrange(., desc(species))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJtVlN2VTdETUJCMmsvNm1MYlFDRllsM2FBYVltSnFCa1FIUmdXN0lwRTVyWVp6SWRsdEdYZ1BlQ0FuZWhvR0Zodk5QcWlTY1pQdjgzV2QvZHo3ZlhTOHVna1dBRVBLUTMvS1I1NFBiOUdCcW9DYnE2ZlVGSWY4RW5CYXNRMWg5Tnl5cFNtNHpzaVZNZ2pjeUxJZEtvbEtKM1M3WUVpRnBuTEpVT0tTM3BXSkZPWTF4N2JwV3pMQXNianRvSkRoV2NCYWhQWXdqclJPZEkyUFIyWnUyOStnVUZXYmpYUmR2SjhhaS9xV3hRM3hpOTlIWXhtYy90Zk51TS92KzFQWTErN0E2TmwwL3IyVVlMTEhDWVNMd002a1YxQlBwTHVTQTY2TDBZM3F2TU9WNS9sc2pqa1BLRlJFY3MxQVNsZ2lTQURoeFkrL0d5SFRGSGhqTVNRYmtHOEpYYXUyd3ZzWHU2ZklBRFc2SitrZXpXSm5XbVdja3BqckxhaitLMU12S0hlbTRUa0ZxMFFkV1ViRFlycHhJcGtWck5JdFptaW14b3Q1Sk0wVlREdnFlKzQrVlYyK0lHbkM4NFRyZjVUUmViL2pUOUVwM3h2NVpZMFBuK3lXL1pTVzdlYTNHTnFSSk9TbWVnZUZId3R6bUNGcHFuaVhNQlBTcytBS0F5bENsVUUrQndJOHZFTmZDUDkrK2xsQjlBd0FBIn0= -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["sepal_length"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sepal_width"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["petal_length"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["petal_width"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"virginica","2":"6.5","3":"3.0","4":"5.55","5":"2.0"},{"1":"versicolor","2":"5.9","3":"2.8","4":"4.35","5":"1.3"},{"1":"setosa","2":"5.0","3":"3.4","4":"1.50","5":"0.2"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHRfaXJpc1ssIGxhcHBseSguU0QsIG1lYW4pLCBieSA9IHNwZWNpZXNdXG5gYGAifQ== -->
+<pre class="r"><code>dt_iris[, lapply(.SD, mean), by = species]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEudGFibGUiLCJkYXRhLmZyYW1lIl0sIm5jb2wiOjUsIm5yb3ciOjN9LCJyZGYiOiJINHNJQUFBQUFBQUFCbVZTdlV2RFFCUy9KazAvWXYwV0JYRlVFS0VWQ3lJTzBvQnViazVGQkRuVGEzdDRYa0tTVmdjSHhkRkJITVJKSEJ4Y2RITVdjUkJ4Y1hUeVR4QW5jZEw0THJrck5BNjU5OTd2ZmYveTFsYXFaYk5xSW9RMHBCczYwblJRMHhvOEtaUkdlU0gzRU5LSFFURkE5b0xVSTZkSWlQU3U0QXdqYmNKODBBWWlyMFI5RWpnK2xwYlpKcDVQYlljNW5rVHliZW8xS0tjMlRwUXpiSVo5VmEzVG80N3RBSElSK29XdlQvU3hSaktUNzdQamw5YllmZnY1YnJGcWphOVAzT1RtcGpyK0huYThmSGFZc3pMVFg0OG5Hek5XOXVYaGFJaWZLMy9sdXlZU3l0YWd1ZVJldlpuVzZIeGwvK08wMmZHL0NzdTdyWHd0ckQ1ZGYxNVlTUG03eHMxN3ptNko0eDBpUmhaVWFRZndoR0g0RXdmcVlXSVZzNFlEWEtwN2tKTGNYSlVaaUppUHdhenZFcHNDSEpzRm43aVliVExDRzBGVFlqMHh0a3RySGFqZ2t1QmZXSXpGWVJHUlhkMnpqaHRRaDBOL1RmNzVyckZUWGdMb2IzRXhiNjFvTjF0OHUxZ1dxOGtyUVpLS2xMd2NwUnR4U3lOTTdKaUJNU2tuaWdhR3R3aVRSaC9RRzlGU2NqM0tBOFVob0g0cGNHQWZoY0J0S1NRK2t0OC8yTndMeHVjQ0FBQT0ifQ== -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["sepal_length"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sepal_width"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["petal_length"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["petal_width"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"setosa","2":"5.006","3":"3.428","4":"1.462","5":"0.246"},{"1":"versicolor","2":"5.936","3":"2.770","4":"4.260","5":"1.326"},{"1":"virginica","2":"6.588","3":"2.974","4":"5.552","5":"2.026"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZHRfaXJpcyAlPiUgXG4gIGdyb3VwX2J5KHNwZWNpZXMpICU+JSBcbiAgc3VtbWFyaXNlX2FsbChtZWFuKVxuYGBgIn0= -->
+<pre class="r"><code>dt_iris %&gt;% 
+  group_by(species) %&gt;% 
+  summarise_all(mean)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NSwibnJvdyI6M30sInJkZiI6Ikg0c0lBQUFBQUFBQUJndHlpVERpaXVCaVlHQmdZbUJtWldaZ1lnWXlXWmlBQkNNREN3TW5pSzVnWUdBV0JqSllnVFF2a0dZR1M0STBnTmtvaXRseVVzdFNjNHFCTEFHd0xGUzBPTFVrdnpnUnl1TXFTeTBxemt6T3o4a3Znb3B3bG1VV3BXZm1aU1lub2huSG1weVRXQXd6RFc1SFdtSnlDVkF2QThNL0lPWUQyZU1nd3FaeVYxOXFnWVA0dnJJVFd5d2pIS1NpWk5ad0dLckQ1Ymx6dXAybk5ySTVzR2w4UGRRZm8rbkFmdXBBczFEZURKaTgvZmNVc0FZSFFTN2Jnc1hYdVJ6RVRPMXIzazdNZ011ZkIvR0tOdGgvTmZjK3R2ejlQQWNHbUR5cWMvTVNjMU5oem1XRkNySVhGNlFtWndLRklWeWU0dFNDeEp6NG5OUzg5SklNcUJnM1JLdzhNd1V1eEZPUVdvS2hEQ0lHVVFhMm1may9XdGh3cFNTV0pPcWxGUUhkZ2VZMnpxTDhjajJZKzBEUnlOUUFKUDcvLy84WFRhR2dYbVplU1dwUlhtS09YbkZxVGxwUmFocFFVQXlLLzBFeHNnZDVna0d1MS9OQmNTcEVMQnpaUndFZzE2TXBnNGdoSzJNUGhnWVgyQ0lVbDdIbkY1Ums1dWNCcFppZzZSSEY3NHhGYUFJQ3BYa2dENmZvSm1lVTVtWHJHaG1EQWdpYWVCbWdvY0FJVGRBd05pdkVUcGIvYUo1a0F6bzdNeThWRnRFNWlVbXBPVkFPSHpCa3dRR3JWMUFFRERwWVRBQkZpL1ZLOG9IK2c0a0FrenhNQkJxU0FQN0dCNVYrQXdBQSJ9 -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["sepal_length"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sepal_width"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["petal_length"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["petal_width"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"setosa","2":"5.006","3":"3.428","4":"1.462","5":"0.246"},{"1":"versicolor","2":"5.936","3":"2.770","4":"4.260","5":"1.326"},{"1":"virginica","2":"6.588","3":"2.974","4":"5.552","5":"2.026"}],"options":{"columns":{"min":{},"max":[10],"total":[5]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
+  </script>
+</div>
+<!-- rnb-frame-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldlZWsgMTogUiBJbnRyb2R1Y3Rpb24iDQphdXRob3I6ICJUeWxlciBXaWxzb24iDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgbWVzc2FnZT1GQUxTRX0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KbGlicmFyeShkYXRhLnRhYmxlKQ0KYGBgDQoNCiMgSW1wb3J0IERhdGEgYW5kIENvbnZlcnQgdG8gRGF0YSBUYWJsZQ0KYGBge3IgaW1wb3J0IGFuZCBsb29rIGF0IGRhdGF9DQpkdF9pcmlzIDwtIGFzLmRhdGEudGFibGUoaXJpcykNCg0KZHRfaXJpcw0KYGBgDQoNCiMjIENsZWFuIHVwIGNvbHVtbiBuYW1lcw0KYGBge3IgY2xlYW4gY29sdW1uIG5hbWVzfQ0KZHRfaXJpcyA8LSBkdF9pcmlzICU+JQ0KICByZW5hbWVfYWxsKC4gJT4lIHRvbG93ZXIgJT4lIGdzdWIoIlxcLiIsICJfIiwgLikpDQoNCmR0X2lyaXMNCmBgYA0KIyBTdW1tYXJ5IEZ1bmN0aW9ucyANCiMjIENsYXNzIEluc3RydWN0aW9ucyBhbmQgVGlkeXZlcnNlIEFsdGVybmF0aXZlcw0KYGBge3J9IA0KIyBjbGFzcyB2ZXJzaW9uDQpkdF9pcmlzWywgbWVhbihzZXBhbF9sZW5ndGgpLCBieSA9IHNwZWNpZXNdDQpgYGANCg0KYGBge3J9DQojIHRpZHl2ZXJzZSB2ZXJzaW9uDQpkdF9pcmlzICU+JSANCiAgZ3JvdXBfYnkoc3BlY2llcykgJT4lIA0KICBzdW1tYXJpc2UobWVhbiA9IG1lYW4oc2VwYWxfbGVuZ3RoKSkNCmBgYA0KDQpgYGB7cn0NCiMgY2xhc3MNCmR0X2lyaXNbLCBtZWFuKHNlcGFsX2xlbmd0aCksIGJ5ID0gc3Vic3RyaW5nKHNwZWNpZXMsIDEsIDEpXQ0KYGBgDQoNCmBgYHtyfQ0KIyB0aWR5dmVyc2UNCmR0X2lyaXMgJT4lIA0KICBncm91cF9ieShzdWJzdHJpbmcoc3BlY2llcywgMSwgMSkpICU+JSANCiAgc3VtbWFyaXNlKG1lYW4gPSBtZWFuKHNlcGFsX2xlbmd0aCkpDQpgYGANCg0KYGBge3J9DQojIGNsYXNzDQpkdF9pcmlzWywgLk4sIGJ5ID0gMTAgKiByb3VuZChzZXBhbF9sZW5ndGggKiBzZXBhbF93aWR0aCAvIDEwKV0NCmBgYA0KDQpgYGB7cn0NCiMgdGlkeXZlcnNlDQpkdF9pcmlzICU+JSANCiAgZ3JvdXBfYnkocm91bmQgPSAxMCAqIHJvdW5kKHNlcGFsX2xlbmd0aCAqIHNlcGFsX3dpZHRoIC8gMTApKSAlPiUgDQogIHN1bW1hcmlzZShuID0gc3VtKG4oKSkpDQpgYGANCg0KIyBDaGFpbmluZw0KYGBge3J9DQojIGNsYXNzDQpkdF9pcmlzWywgLihzZXBhbF9sZW5ndGggPSBtZWRpYW4oc2VwYWxfbGVuZ3RoKSwNCiAgICAgICAgICAgIHNlcGFsX3dpZHRoID0gbWVkaWFuKHNlcGFsX3dpZHRoKSwNCiAgICAgICAgICAgIHBldGFsX2xlbmd0aCA9IG1lZGlhbihwZXRhbF9sZW5ndGgpLA0KICAgICAgICAgICAgcGV0YWxfd2lkdGggPSBtZWRpYW4ocGV0YWxfd2lkdGgpKSwNCiAgICAgICAgICAgIGJ5ID0gc3BlY2llc11bb3JkZXIoLXNwZWNpZXMpXQ0KYGBgDQoNCmBgYHtyfQ0KIyB0aWR5DQpkdF9pcmlzICU+JSANCiAgZ3JvdXBfYnkoc3BlY2llcykgJT4lIA0KICBzdW1tYXJpc2VfYWxsKG1lZGlhbikgJT4lIA0KICBhcnJhbmdlKC4sIGRlc2Moc3BlY2llcykpDQpgYGANCg0KDQoNCmBgYHtyfQ0KZHRfaXJpc1ssIGxhcHBseSguU0QsIG1lYW4pLCBieSA9IHNwZWNpZXNdDQpgYGANCg0KYGBge3J9DQpkdF9pcmlzICU+JSANCiAgZ3JvdXBfYnkoc3BlY2llcykgJT4lIA0KICBzdW1tYXJpc2VfYWxsKG1lYW4pDQpgYGANCg0KYGBge3J9DQoNCmBgYA0KDQo=</div>
 
 
 
