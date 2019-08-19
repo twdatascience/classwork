@@ -1,0 +1,6 @@
+---
+title: "Week 1: R Introduction"
+author: "Tyler Wilson"
+output: html_notebook
+---
+
