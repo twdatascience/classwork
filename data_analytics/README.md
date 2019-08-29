@@ -4,3 +4,5 @@ This is the coding work I did for the Data Analytics course I took. The code inc
 Week 2 there was not a coding assignment.
 
 Week 4 was all Tableau visualizations.
+
+Week 5 was all in RapidMiner
