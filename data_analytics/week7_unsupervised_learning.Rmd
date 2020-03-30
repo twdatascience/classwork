@@ -1,0 +1,45 @@
+---
+title: "K Means Cluster Analysis of mtcars"
+author: "Tyler Wilson"
+date: "April 30, 2018"
+output: word_document
+---
+
+I chose to look at the mtcars dataset for the unsupervised learning assignment. First I loaded the dataset and looked at it as well as the summary. I also set a seed for reproduceability, I used 42 because it is the answer to everything. 
+```{r}
+data(mtcars)
+summary(mtcars)
+set.seed(42)
+```
+From viewing the dataset, I decided that I would use unsupervised learning to group mpg, disp, hp, wt, and carb to see if the clusters resulted in cyl groupings. I used the kmeans function for this.
+```{r}
+cars_km <- kmeans(mtcars[c("mpg", "disp", "hp", "wt", "carb")], 3, nstart = 25)
+cars_km
+```
+I then created a table to view how the clustering did versus the known cylinders for each car.
+```{r}
+table(cars_km$cluster, mtcars$cyl)
+```
+From this, the 4 cylinder cluster did very well with no miss-clasifications. Both the 8 cylinder cluster and the 6 cylinder cluster had five miss-classifications. The 8 cylinder cluster was much larger, however, so a smaller percent of were miss-classified. 
+To create plots with the cluster centers I viewed the produced centers matrix to know the column numbers (I use head here so that markdown produces it).
+```{r}
+head(cars_km$centers)
+```
+Then I created plots to show the different clusters vs mpg, with cluster centers.
+```{r}
+plot(mtcars[,c("disp")], mtcars[,c("mpg")], col=cars_km$cluster)
+points(cars_km$centers[,c(2,1)], col=1:3, pch=8, cex=2)
+```
+```{r}
+plot(mtcars[,c("hp")], mtcars[,c("mpg")], col=cars_km$cluster)
+points(cars_km$centers[,c(3,1)], col=1:3, pch=8, cex=2)
+```
+```{r}
+plot(mtcars[,c("wt")], mtcars[,c("mpg")], col=cars_km$cluster)
+points(cars_km$centers[,c(4,1)], col=1:3, pch=8, cex=2)
+```
+```{r}
+plot(mtcars[,c("carb")], mtcars[,c("mpg")], col=cars_km$cluster)
+points(cars_km$centers[,c(5,1)], col=1:3, pch=8, cex=2)
+```
+While cluster attributes like weight (wt) and number of carborators (carb) may have thrown off the cylinder determination a little bit, overall the plots show fairly good clustering. With a between sum of squares/total sum of squares of 85% that indicates a good fit eventhough looking at the raw error sum of squares the numbers look large.

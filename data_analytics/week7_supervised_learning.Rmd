@@ -1,0 +1,86 @@
+---
+title: "Supervised Learning"
+author: "Tyler Wilson"
+date: "April 30, 2018"
+output: word_document
+---
+
+First, I loaded the libraries I needed. I am more comfortable with ggplot2 so that is what I used.
+```{r}
+library(ggplot2)
+library(class)
+library(gmodels)
+```
+I decided to use the CO2 dataset from the R libraries.
+```{r}
+data("CO2")
+```
+Then I viewed the data and looked at a summary.
+```{r}
+head(CO2)
+summary(CO2)
+```
+The Concentration of CO2 (conc) and the uptake of CO2 (uptake) are the main data for the learning model, so I also looked at that separately.
+```{r}
+summary(CO2[c("conc", "uptake")])
+```
+I wanted to see how the data looked in a scatterplot to see the general groupings.
+```{r}
+ggplot(data = CO2, mapping = aes(conc, uptake, color = Type, shape = Treatment)) + geom_point(aes(size = 1)) + scale_size_continuous(guide = FALSE)
+```
+I liked the look of having four groups and thought it would make for a good K-nearest neighbors problem. So I made a new column in CO2 that combined the Type and Treatment columns into a Group column.
+```{r}
+CO2$Group <- paste(CO2$Type, CO2$Treatment)
+head(CO2)
+```
+Then I set up the sampling to create an 80/20 split in the data for a training set and a test set. When setting up the training and testing sets I only needed the conc and uptake columns. I used the new Group column for the labels. 
+```{r}
+set.seed(3456)
+div <- sample(2, nrow(CO2), replace = TRUE, prob = c(0.8, 0.2))
+TrainCO2 <- CO2[div==1, 4:5]
+TestCO2 <- CO2[div==2, 4:5]
+TrainLabels <- CO2[div==1, 6]
+TestLabels <- CO2[div==2, 6]
+```
+Then I ran the K-nearest neighbors function.
+```{r}
+CO2_pred <- knn(train=TrainCO2, test=TestCO2, cl=TrainLabels, k=3)
+CO2_pred
+```
+To check how the K Nearest Neighbors did I used the CrossTable function.
+```{r}
+CrossTable(x = TestLabels, y = CO2_pred, prop.chisq = FALSE, prop.r = FALSE, prop.c = FALSE, prop.t = FALSE)
+```
+This model did ok with the test set. Every group had errors, but this could be explained by the relatively small training set size. I then tried normalizing the data to see if that would give me better results.
+```{r}
+normalize <- function(x){
+  num <- x - min(x)
+  denom <- max(x) - min(x)
+  return(num/denom)
+}
+CO2_norm <- as.data.frame(lapply(CO2[4:5], normalize))
+summary(CO2_norm)
+```
+I then re-setup the K Nearest Neighbors and ran it.
+```{r}
+set.seed(3456)
+div <- sample(2, nrow(CO2_norm), replace = TRUE, prob = c(0.8, 0.2))
+TrainCO2 <- CO2_norm[div==1, 1:2]
+TestCO2 <- CO2_norm[div==2, 1:2]
+TrainLabels <- CO2[div==1, 6]
+TestLabels <- CO2[div==2, 6]
+CO2_norm_pred <- knn(train = TrainCO2, test = TestCO2, cl = TrainLabels, k = 3)
+```
+I also ran it with k=4 to see if that gave better results.
+```{r}
+CO2_norm_pred_k4 <- knn(train=TrainCO2, test = TestCO2, cl = TrainLabels, k = 4)
+```
+Then I looked at the CrossTable for the k = 3 normalized data.
+```{r}
+CrossTable(x = TestLabels, y = CO2_norm_pred, prop.chisq = FALSE, prop.r = FALSE, prop.c = FALSE, prop.t = FALSE)
+```
+And the CrossTable for the k = 4 normalized data.
+```{r}
+CrossTable(x = TestLabels, y = CO2_norm_pred_k4, prop.chisq = FALSE, prop.r = FALSE, prop.c = FALSE, prop.t = FALSE)
+```
+From these CrossTables, the normalized data with k = 3 did the best out of all three models. The k = 4 model was the worst. All the models had trouble determining differences between Quebec chilled and nonchilled, but did well determining between Mississippi and Quebec.
